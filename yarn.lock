@@ -3006,18 +3006,10 @@
     "@typescript-eslint/types" "5.3.0"
     eslint-visitor-keys "^3.0.0"
 
-"@urql/core@>=2.3.3":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@urql/core/-/core-2.3.4.tgz#4eb00d6b2c631b031e4ad235fcce1a11ceb09ecd"
-  integrity sha512-KXeR55ONqkTZ2gwNgyFGJEGRp1/jEnyqkFjEguknnG6GFaikAwAX0TMijKcX6ZQ4qE59cDtVEtSbqpVkd9XNmA==
-  dependencies:
-    "@graphql-typed-document-node/core" "^3.1.0"
-    wonka "^4.0.14"
-
-"@urql/core@^2.3.2":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@urql/core/-/core-2.3.3.tgz#e4777b95c31d8ad0ba21ea1f5c851cbbe1d0ac17"
-  integrity sha512-Bi9mafTFu0O1XZmI7/HrEk12LHZW+Fs/V1FqSJoUDgYIhARIJW6cCh3Havy1dJJ0FETxYmmQQXPf6kst+IP2qQ==
+"@urql/core@>=2.3.3", "@urql/core@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.yarnpkg.com/@urql/core/-/core-2.3.6.tgz#ee0a6f8fde02251e9560c5f17dce5cd90f948552"
+  integrity sha512-PUxhtBh7/8167HJK6WqBv6Z0piuiaZHQGYbhwpNL9aIQmLROPEdaUYkY4wh45wPQXcTpnd11l0q3Pw+TI11pdw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.1.0"
     wonka "^4.0.14"
@@ -3942,15 +3934,7 @@ chalk@^1.0.0, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^4.0.0, chalk@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
-  dependencies:
-    ansi-styles "^4.1.0"
-    supports-color "^7.1.0"
-
-chalk@^4.1.2:
+chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==
@@ -4276,10 +4260,10 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
-concurrently@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-6.3.0.tgz#63128cb4a6ed54d3c0ed8528728590a5fe54582a"
-  integrity sha512-k4k1jQGHHKsfbqzkUszVf29qECBrkvBKkcPJEUDTyVR7tZd1G/JOfnst4g1sYbFvJ4UjHZisj1aWQR8yLKpGPw==
+concurrently@^6.4.0:
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-6.4.0.tgz#5387ee86be435a0eb51c292ade8a00acf479f170"
+  integrity sha512-HZ3D0RTQMH3oS4gvtYj1P+NBc6PzE2McEra6yEFcQKrUQ9HvtTGU4Dbne083F034p+LRb7kWU0tPRNvSGs1UCQ==
   dependencies:
     chalk "^4.1.0"
     date-fns "^2.16.1"
@@ -10286,12 +10270,12 @@ url@^0.11.0:
     punycode "1.3.2"
     querystring "0.2.0"
 
-urql@^2.0.5:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/urql/-/urql-2.0.5.tgz#ab56bdc659fc0f4b3bc5b286359a354c74817bdb"
-  integrity sha512-UOl37CkNO1sfhw8jPihq+9NKUpTLnsRjpK7vmOVqPceqSO0rYXHOAEJp2TWDhyLjn2lYDlDlAfDaxNyK5m1FOA==
+urql@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/urql/-/urql-2.0.6.tgz#e67f09c83780f13d07d462a669977b3d5b36d964"
+  integrity sha512-ovK9mx7YxD/CKUwVZGbEDBzZjbCcNsr1990nIhDCKe3Ij/0gNcIa+0EIyXKceOPuYDYKavIoaNQV2kOZjQxFcw==
   dependencies:
-    "@urql/core" "^2.3.2"
+    "@urql/core" "^2.3.6"
     wonka "^4.0.14"
 
 use-subscription@1.5.1:
