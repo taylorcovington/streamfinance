@@ -6,7 +6,11 @@ function Homepage() {
 
   return (
     <>
-      <h1>Stream Finance</h1>
+      <div className="text-center">
+        <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+          Stream Finance
+        </h1>
+      </div>
       <h2>Follow your income streams to wealth.</h2>
       {!data?.currentUser ? (
         <>
