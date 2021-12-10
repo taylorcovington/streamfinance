@@ -7,7 +7,7 @@ function Navbar() {
 
   return (
     <div style={{ display: `flex`, justifyContent: `space-between` }}>
-      <Link href={isAuthenticated ? `/app` : `/`}>SaaS</Link>
+      <Link href={isAuthenticated ? `/app` : `/`}>Stream Finance</Link>
       {isAuthenticated && <Link href="/api/auth/logout">Logout</Link>}
     </div>
   );

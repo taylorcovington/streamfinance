@@ -6,8 +6,8 @@ function Homepage() {
 
   return (
     <>
-      <h1>My SaaS Name</h1>
-      <h2>This could be your tagline</h2>
+      <h1>Stream Finance</h1>
+      <h2>Follow your income streams to wealth.</h2>
       {!data?.currentUser ? (
         <>
           <Link href="/get-started">Get started</Link>
