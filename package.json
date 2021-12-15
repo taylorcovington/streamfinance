@@ -25,6 +25,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.4.2",
+    "@heroicons/react": "^1.0.5",
     "@prisma/client": "~2.23.0",
     "@urql/exchange-graphcache": "^4.3.5",
     "apollo-server-micro": "^3.5.0",
