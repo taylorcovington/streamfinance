@@ -1,10 +1,9 @@
-import AuthenticationForm from "../client/components/AuthenticationForm";
+import Authentication from "../client/components/Authentication";
 
 function Signup() {
   return (
     <>
-      <h1>Sign up</h1>
-      <AuthenticationForm />
+      <Authentication heading="Sign up" btnText="Let's go!" />
     </>
   );
 }
