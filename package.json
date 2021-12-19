@@ -28,6 +28,7 @@
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@prisma/client": "~2.23.0",
+    "@tailwindcss/forms": "^0.4.0",
     "@urql/exchange-graphcache": "^4.3.5",
     "apollo-server-micro": "^3.5.0",
     "cookie-session": "^1.4.0",

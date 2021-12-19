@@ -1,17 +1,16 @@
 import Link from "next/link";
 import { useGetCurrentUserQuery } from "../../graphql/getCurrentUser.generated";
-import streamLogo from "../../../../public/streamLogo.png";
+import logoNoIcon from "../../../../public/logo-noicon.png";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import logo from "../../public/logo.png";
 import Image from "next/image";
 
 const navigation = [
   { name: "Product", href: "#" },
   { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "about", href: "#" },
+  { name: "blog", href: "#" },
 ];
 
 function Navbar() {
@@ -31,10 +30,10 @@ function Navbar() {
                 <span className="sr-only">Stream Finance</span>
                 <Image
                   className="h-8 w-auto sm:h-10"
-                  src={streamLogo}
+                  src={logoNoIcon}
                   alt=""
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={40}
                 />
               </a>
               <div className="-mr-2 flex items-center md:hidden">
@@ -74,7 +73,7 @@ function Navbar() {
                 </a>
                 <a
                   href="/get-started"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-amber-600 hover:bg-amber-700"
                 >
                   Start free trial
                 </a>

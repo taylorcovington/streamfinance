@@ -1,10 +1,9 @@
-import AuthenticationForm from "../client/components/AuthenticationForm";
+import Authentication from "../client/components/Authentication";
 
 function Login() {
   return (
     <>
-      <h1>Welcome back!</h1>
-      <AuthenticationForm />
+      <Authentication heading="Welcome back!" btnText="Let's go!" />
     </>
   );
 }
