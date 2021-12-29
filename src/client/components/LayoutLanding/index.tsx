@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+export default function LayoutLanding({ children }: Props) {
   return (
     <>
       <Navbar />
