@@ -24,7 +24,17 @@
   ```
 */
 import { Fragment, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useGetProjectQuery } from "../../../client/graphql/getProject.generated";
 import { Dialog, Menu, Transition } from "@headlessui/react";
+
+// Components
+import UpgradeButton from "../../../client/components/UpgradeButton";
+
+// Assets
+import logoWhiteNoIcon from "../../../../public/stream-logo-white-noicon.png";
 import {
   BellIcon,
   ClockIcon,
@@ -38,7 +48,9 @@ import {
   ShieldCheckIcon,
   UserGroupIcon,
   XIcon,
+  CurrencyDollarIcon
 } from "@heroicons/react/outline";
+
 import {
   CashIcon,
   CheckCircleIcon,
@@ -49,11 +61,11 @@ import {
 } from "@heroicons/react/solid";
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "History", href: "#", icon: ClockIcon, current: false },
-  { name: "Balances", href: "#", icon: ScaleIcon, current: false },
-  { name: "Cards", href: "#", icon: CreditCardIcon, current: false },
-  { name: "Recipients", href: "#", icon: UserGroupIcon, current: false },
+  { name: "Stream Dashboard", href: "#", icon: HomeIcon, current: true },
+  { name: "Income Wells", href: "#", icon: ClockIcon, current: false },
+  { name: "Expenses", href: "#", icon: ScaleIcon, current: false },
+  { name: "Savings", href: "#", icon: CreditCardIcon, current: false },
+  { name: "Investments", href: "#", icon: UserGroupIcon, current: false },
   { name: "Reports", href: "#", icon: DocumentReportIcon, current: false },
 ];
 const secondaryNavigation = [
@@ -62,7 +74,10 @@ const secondaryNavigation = [
   { name: "Privacy", href: "#", icon: ShieldCheckIcon },
 ];
 const cards = [
-  { name: "Account balance", href: "#", icon: ScaleIcon, amount: "$30,659.45" },
+  { name: "Total Monthly Income", href: "#", icon: CurrencyDollarIcon, amount: "$10,659.45" },
+  { name: "Total Monthly Expenses", href: "#", icon: ScaleIcon, amount: "$5,659.45" },
+  { name: "Amount Saved Per Month", href: "#", icon: ScaleIcon, amount: "$5,659.45" },
+  { name: "Amount Invested Each Month", href: "#", icon: ScaleIcon, amount: "$5,659.45" },
   // More items...
 ];
 const transactions = [
@@ -89,8 +104,23 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
+  const { slug } = router.query;
+  const [{ data, fetching, error }] = useGetProjectQuery({
+    variables: {
+      slug: String(slug),
+    },
+  });
+
+  if (fetching) return <p>Loading...</p>;
+
+  if (error) return <p>{error.message}</p>;
+
+  if (!data?.project || typeof slug !== "string") return <p>Not found.</p>;
+
+  const { project } = data;
 
   return (
     <>
@@ -154,10 +184,17 @@ export default function Example() {
                   </div>
                 </Transition.Child>
                 <div className="flex-shrink-0 flex items-center px-4">
-                  <img
+                  {/* <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg"
-                    alt="Easywire logo"
+                    src={logoWhiteNoIcon}
+                    alt="Stream Finance logo"
+                  /> */}
+                   <Image
+                    className="h-8 w-auto"
+                    src={logoWhiteNoIcon}
+                    alt="Stream Finance logo"
+                    width={150}
+                    height={35}
                   />
                 </div>
                 <nav
@@ -216,11 +253,23 @@ export default function Example() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-col flex-grow bg-cyan-700 pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img
+              {/* <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg"
                 alt="Easywire logo"
-              />
+              /> */}
+                {/* <img
+                    className="h-8 w-auto"
+                    src={logoWhiteNoIcon}
+                    alt="Stream Finance logo"
+                  /> */}
+                   <Image
+                    className="h-8 w-auto"
+                    src={logoWhiteNoIcon}
+                    alt="Stream Finance logo"
+                    width={215}
+                    height={30}
+                  />
             </div>
             <nav
               className="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto"
@@ -355,28 +404,53 @@ export default function Example() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Settings
-                          </a>
+                          // <a
+                          //   href="#"
+                          //   className={classNames(
+                          //     active ? "bg-gray-100" : "",
+                          //     "block px-4 py-2 text-sm text-gray-700"
+                          //   )}
+                          // >
+                          //   Settings
+                          // </a>
+                                <Link href={`/app/${project.slug}/settings`}>Settings</Link>
+
                         )}
                       </Menu.Item>
+                      {/* <UpgradeButton projectId={project.id} /> */}
+                      {!project.paidPlan && (
+                        <Menu.Item>
+                        {({ active }) => (
+                          // <a
+                          //   href="#"
+                          //   className={classNames(
+                          //     active ? "bg-gray-100" : "",
+                          //     "block px-4 py-2 text-sm text-gray-700"
+                          //   )}
+                          // >
+                          //   Upgrade
+                          // </a>
+                          <UpgradeButton isActive={active} projectId={project.id} /> 
+                        )}
+                      </Menu.Item>
+                      )}
+
+                      
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Logout
-                          </a>
+                          // <a
+                          //   href="#"
+                          //   className={classNames(
+                          //     active ? "bg-gray-100" : "",
+                          //     "block px-4 py-2 text-sm text-gray-700"
+                          //   )}
+                          // >
+                          //   Logout
+                          // </a>
+                          <Link href="/api/auth/logout"><span className={classNames(
+                            active ? "bg-gray-100" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}>Logout</span></Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -451,7 +525,7 @@ export default function Example() {
             <div className="mt-8">
               <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-lg leading-6 font-medium text-gray-900">
-                  Overview
+                  Stream Overview
                 </h2>
                 <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {/* Card */}

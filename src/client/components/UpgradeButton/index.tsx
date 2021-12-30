@@ -7,7 +7,12 @@ const PUBLIC_STRIPE_API_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_API_KEY;
 /**
  * When clicked, redirects the user to their a Stripe Checkout session for the to upgrade to the paid plan
  */
-export default function UpgradeButton({ projectId }: { projectId: string }) {
+// @ts-ignore
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default function UpgradeButton({ projectId, isActive }: { projectId: string, isActive: boolean }) {
   const [
     ,
     createStripeCheckoutSession,
@@ -34,5 +39,8 @@ export default function UpgradeButton({ projectId }: { projectId: string }) {
     });
   };
 
-  return <button onClick={redirectToCheckout}>Upgrade</button>;
+  return <button className={classNames(
+    isActive ? "bg-gray-100" : "",
+    "block px-4 py-2 text-sm text-gray-700"
+  )} onClick={redirectToCheckout}>Upgrade</button>;
 }

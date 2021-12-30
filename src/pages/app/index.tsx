@@ -5,7 +5,8 @@ import { useMutation } from "urql";
 import { CreateProjectDocument } from "../../client/graphql/createProject.generated";
 import { useGetCurrentUserQuery } from "../../client/graphql/getCurrentUser.generated";
 
-export default function Dashboard() {
+// TODO this should only be used by admins to create a new app
+export default function AdminDashboard() {
   const router = useRouter();
   const [{ data, fetching, error }] = useGetCurrentUserQuery();
   const [, createProject] = useMutation(CreateProjectDocument);
