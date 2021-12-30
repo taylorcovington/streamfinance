@@ -12,7 +12,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function UpgradeButton({ projectId, isActive }: { projectId: string, isActive: boolean }) {
+export default function UpgradeButton({ projectId, isActive }: { projectId: string, isActive?: boolean }) {
   const [
     ,
     createStripeCheckoutSession,
