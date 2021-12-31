@@ -1,4 +1,4 @@
-import { extendType, nonNull, objectType, stringArg } from "nexus";
+import { extendType, nonNull, objectType, stringArg, enumType } from "nexus";
 import prisma from "../../db/prisma";
 
 const User = objectType({
@@ -8,6 +8,7 @@ const User = objectType({
     t.model.name();
     t.model.projects();
     t.model.email();
+    t.model.role();
   },
 });
 
@@ -48,6 +49,11 @@ const mutations = extendType({
       },
     });
   },
+});
+
+const RoleEnum = enumType({
+  name: "RoleEnum",
+  members: ["USER", "ADMIN"],
 });
 
 export default [User, mutations, queries];

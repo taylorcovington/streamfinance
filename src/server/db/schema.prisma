@@ -1,3 +1,5 @@
+//* Anytime a change is made in this file, run yarn prisma:migrate
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,13 +10,15 @@ datasource db {
 }
 
 model User {
-  id         String    @id @default(cuid())
-  createdAt  DateTime  @default(now())
-  modifiedAt DateTime  @default(now())
-  email      String    @unique
-  projects   Project[]
-  name       String?
-  role       Role      @default(USER)
+  id              String           @id @default(cuid())
+  createdAt       DateTime         @default(now())
+  modifiedAt      DateTime         @default(now())
+  email           String           @unique
+  projects        Project[]
+  name            String?
+  role            Role             @default(USER)
+  accountStatuses AccountStatuses?
+  income          Income[]
 }
 
 model Project {
@@ -33,6 +37,8 @@ model Project {
 
 model AccountStatuses {
   id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String   @unique
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
@@ -45,6 +51,8 @@ model AccountStatuses {
 
 model Income {
   id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 

@@ -107,3 +107,11 @@ For more information, check out [the in-depth docs](./docs/README.md)
   -#dbdbdc
   -#ebebec
   -#fcfcfc
+
+#### Playground
+
+- localhost3000/api
+
+#### Server
+
+- The apollo server can be found under `./src/pages/api/index`

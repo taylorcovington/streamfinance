@@ -11,6 +11,7 @@ export default function AdminDashboard() {
   const [{ data, fetching, error }] = useGetCurrentUserQuery();
   const [, createProject] = useMutation(CreateProjectDocument);
   const [name, setName] = useState("");
+  const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
 
   if (fetching) return <p>Loading...</p>;
 
@@ -26,9 +27,14 @@ export default function AdminDashboard() {
     );
   }
 
+  if (data.currentUser.role !== "ADMIN") {
+    if (process.browser) router.push("/app/stream-finance");
+  }
+
   return (
     <>
-      <h1>Hello {data.currentUser.name}!</h1>
+      <h1>Hi {data.currentUser.name}!</h1>
+      <p>Which app would you like to access? </p>
       <ul>
         {data.currentUser.projects.map((project) => (
           <li key={project.slug}>
@@ -36,26 +42,36 @@ export default function AdminDashboard() {
           </li>
         ))}
       </ul>
-      <input
-        placeholder="Hooli Inc."
-        value={name}
-        onChange={(evt) => setName(evt.target.value)}
-      />
-      <button
-        disabled={!name}
-        onClick={() => {
-          createProject({
-            name,
-          }).then((result) => {
-            const slug = result.data?.createProject?.slug;
-            if (slug) router.push(`/app/${slug}`);
-          });
-        }}
-      >
-        Create project
+      <button onClick={() => setIsCreateProjectOpen((prev) => !prev)}>
+        Create a new project
       </button>
+      <br />
       <Link href="/app/settings">Settings</Link>
+      <br />
       <Link href="/api/auth/logout">Logout</Link>
+
+      {isCreateProjectOpen && (
+        <>
+          <input
+            placeholder="Hooli Inc."
+            value={name}
+            onChange={(evt) => setName(evt.target.value)}
+          />
+          <button
+            disabled={!name}
+            onClick={() => {
+              createProject({
+                name,
+              }).then((result) => {
+                const slug = result.data?.createProject?.slug;
+                if (slug) router.push(`/app/${slug}`);
+              });
+            }}
+          >
+            Create project
+          </button>
+        </>
+      )}
     </>
   );
 }

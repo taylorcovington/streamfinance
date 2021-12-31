@@ -3,6 +3,7 @@ query GetCurrentUser {
     id
     name
     email
+    role
     projects {
       id
       name

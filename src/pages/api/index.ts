@@ -5,6 +5,7 @@ import { schema } from "../../server/graphql/schema";
 import handler from "../../server/api-route";
 import { MicroRequest } from "apollo-server-micro/dist/types";
 import { ServerResponse } from "http";
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 
 export const config = {
   api: {
@@ -25,6 +26,7 @@ const apolloServer = new ApolloServer({
     origin: getRequestOrigin(req),
     prisma,
   }),
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
 const startServer = apolloServer.start();

@@ -2,12 +2,24 @@
 ### Do not make changes to this file directly
 
 
+type AccountStatuses {
+  id: String!
+  income: Boolean!
+  investments: Boolean!
+  necessities: Boolean!
+  onboarding: Boolean!
+  savings: Boolean!
+  user: User!
+  userId: String!
+}
+
 type Mutation {
   createProject(name: String!, slug: String): Project
   createStripeCheckoutBillingPortalUrl(projectId: String!): String
   createStripeCheckoutSession(plan: PaidPlan!, projectId: String!): String
   inviteToProject(email: String!, projectId: String!): Boolean
   removeUserFromProject(projectId: String!, userId: String!): Project
+  updateAccountStatuses(userId: String!): AccountStatuses
   updateUser(name: String, userId: String!): User
 }
 
@@ -35,11 +47,17 @@ type Query {
   project(id: String, slug: String): Project
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 type User {
   email: String!
   id: String!
   name: String
   projects(after: ProjectWhereUniqueInput, before: ProjectWhereUniqueInput, first: Int, last: Int): [Project!]!
+  role: Role!
 }
 
 input UserWhereUniqueInput {
