@@ -30,6 +30,8 @@ describe(`currentUser`, () => {
             currentUser {
               id
               name
+              email
+              role
             }
           }
         `,
@@ -43,8 +45,10 @@ describe(`currentUser`, () => {
           Object {
             "data": Object {
               "currentUser": Object {
+                "email": "test@test.com",
                 "id": "test",
                 "name": "Tester",
+                "role": "USER",
               },
             },
           }
@@ -53,7 +57,7 @@ describe(`currentUser`, () => {
 });
 
 describe(`updateUser`, () => {
-  it(`should update the user's name`, async () => {
+  it(`should update the user's name and email`, async () => {
     // Right name initially
     expect(
       await request(
@@ -62,6 +66,7 @@ describe(`updateUser`, () => {
             currentUser {
               id
               name
+              email
             }
           }
         `,
@@ -75,6 +80,7 @@ describe(`updateUser`, () => {
       Object {
         "data": Object {
           "currentUser": Object {
+            "email": "test@test.com",
             "id": "test",
             "name": "Tester",
           },
@@ -87,9 +93,14 @@ describe(`updateUser`, () => {
       await request(
         graphql`
           mutation updateUser($userId: String!) {
-            updateUser(userId: $userId, name: "New name") {
+            updateUser(
+              userId: $userId
+              name: "New name"
+              email: "newemail@test.com"
+            ) {
               id
               name
+              email
             }
           }
         `,
@@ -106,6 +117,7 @@ describe(`updateUser`, () => {
       Object {
         "data": Object {
           "updateUser": Object {
+            "email": "newemail@test.com",
             "id": "test",
             "name": "New name",
           },
@@ -121,6 +133,7 @@ describe(`updateUser`, () => {
             currentUser {
               id
               name
+              email
             }
           }
         `,
@@ -134,6 +147,7 @@ describe(`updateUser`, () => {
       Object {
         "data": Object {
           "currentUser": Object {
+            "email": "newemail@test.com",
             "id": "test",
             "name": "New name",
           },

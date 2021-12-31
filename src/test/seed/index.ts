@@ -7,6 +7,7 @@ export interface SeedData {
     id: string;
     email: string;
     name?: string;
+    role: "USER" | "ADMIN";
   }>;
   projects?: Array<{
     id: string;

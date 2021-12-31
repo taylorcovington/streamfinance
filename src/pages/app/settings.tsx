@@ -39,7 +39,7 @@ export default function Dashboard() {
         placeholder="Arnold Schwarzenegger"
         onChange={(evt) => setName(evt.target.value)}
       />
-      <button
+      {/* <button
         disabled={!name}
         onClick={() => {
           if (!name) return;
@@ -57,7 +57,7 @@ export default function Dashboard() {
         }}
       >
         Save
-      </button>
+      </button> */}
       <Link href="/app">Back to dashboard</Link>
     </>
   );

@@ -6,6 +6,7 @@ export const testData: SeedData = {
       id: "test",
       name: "Tester",
       email: "test@test.com",
+      role: "USER",
     },
   ],
   projects: [

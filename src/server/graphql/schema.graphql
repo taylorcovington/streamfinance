@@ -20,7 +20,7 @@ type Mutation {
   inviteToProject(email: String!, projectId: String!): Boolean
   removeUserFromProject(projectId: String!, userId: String!): Project
   updateAccountStatuses(userId: String!): AccountStatuses
-  updateUser(name: String, userId: String!): User
+  updateUser(email: String!, name: String, userId: String!): User
 }
 
 enum PaidPlan {
