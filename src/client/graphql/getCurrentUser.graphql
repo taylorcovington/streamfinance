@@ -4,6 +4,14 @@ query GetCurrentUser {
     name
     email
     role
+    accountStatuses {
+      id
+      onboarding
+      income
+      necessities
+      savings
+      investments
+    }
     projects {
       id
       name

@@ -2,6 +2,15 @@
 ### Do not make changes to this file directly
 
 
+input AccountStatusInputType {
+  income: Boolean
+  investments: Boolean
+  necessities: Boolean
+  onboarding: Boolean
+  savings: Boolean
+  userId: String!
+}
+
 type AccountStatuses {
   id: String!
   income: Boolean!
@@ -13,18 +22,58 @@ type AccountStatuses {
   userId: String!
 }
 
+scalar Decimal
+
+type Income {
+  id: String!
+  incomeType: IncomeType!
+  name: String!
+  payAmount: Decimal!
+  payFrequency: PayFrequency!
+  user: User!
+  userId: String!
+}
+
+enum IncomeType {
+  PRIMARY
+  SECONDARY
+  SIDE_HUSTLE
+  SPOUSE
+}
+
+enum IncomeTypeEnum {
+  PRIMARY
+  SECONDARY
+  SIDE_HUSTLE
+  SPOUSE
+}
+
 type Mutation {
+  createAccountStatuses(userId: String!): AccountStatuses
+  createIncome(incomeType: IncomeTypeEnum!, name: String!, payAmount: Int!, payFrequency: PayFrequencyEnum!, userId: String!): Income
   createProject(name: String!, slug: String): Project
   createStripeCheckoutBillingPortalUrl(projectId: String!): String
   createStripeCheckoutSession(plan: PaidPlan!, projectId: String!): String
   inviteToProject(email: String!, projectId: String!): Boolean
   removeUserFromProject(projectId: String!, userId: String!): Project
-  updateAccountStatuses(userId: String!): AccountStatuses
+  updateAccountStatuses(input: AccountStatusInputType): AccountStatuses
   updateUser(email: String!, name: String, userId: String!): User
 }
 
 enum PaidPlan {
   pro
+}
+
+enum PayFrequency {
+  BI_WEEKLY
+  MONTHLY
+  WEEKLY
+}
+
+enum PayFrequencyEnum {
+  BI_WEEKLY
+  MONTHLY
+  WEEKLY
 }
 
 type Project {
@@ -53,6 +102,7 @@ enum Role {
 }
 
 type User {
+  accountStatuses: AccountStatuses
   email: String!
   id: String!
   name: String

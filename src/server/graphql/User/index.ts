@@ -7,6 +7,7 @@ const User = objectType({
     t.model.id();
     t.model.name();
     t.model.projects();
+    t.model.accountStatuses();
     t.model.email();
     t.model.role();
   },
@@ -23,6 +24,7 @@ const queries = extendType({
         return prisma.user.findUnique({
           where: {
             id: ctx.user.id,
+            // id: "ckxukfyig0215lw8is3frdbeg",
           },
         });
       },

@@ -1,0 +1,20 @@
+mutation CreateIncome(
+  $userId: String!
+  $name: String!
+  $payFrequency: PayFrequencyEnum!
+  $payAmount: Int!
+  $incomeType: IncomeTypeEnum!
+) {
+  createIncome(
+    userId: $userId
+    name: $name
+    payFrequency: $payFrequency
+    payAmount: $payAmount
+    incomeType: $incomeType
+  ) {
+    name
+    payFrequency
+    payAmount
+    incomeType
+  }
+}

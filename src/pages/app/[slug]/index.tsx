@@ -4,12 +4,15 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetProjectQuery } from "../../../client/graphql/getProject.generated";
 import { useGetCurrentUserQuery } from "../../../client/graphql/getCurrentUser.generated";
+import { useCreateAccountStatusesMutation } from "../../../client/graphql/createAccountStatuses.generated";
 import Onboarding from "./onboarding";
 
 export default function Dashboard() {
   const router = useRouter();
   const { slug } = router.query;
   const [{ data: userData, fetching, error }] = useGetCurrentUserQuery();
+  const [, createAccountStatuses] = useCreateAccountStatusesMutation();
+
   const [
     { data: projectData, fetching: projectFetching, error: projectError },
   ] = useGetProjectQuery({
@@ -38,10 +41,16 @@ export default function Dashboard() {
     );
   }
 
+  if (!userData.currentUser.accountStatuses) {
+    createAccountStatuses({
+      userId: userData.currentUser.id,
+    });
+  }
+
   return (
     // if user.onboarding === false - let's start the onboarding process
     <>
-      {!userData?.currentUser?.name && (
+      {userData.currentUser.accountStatuses?.onboarding && (
         // @ts-ignore
         <Onboarding user={userData.currentUser} />
       )}

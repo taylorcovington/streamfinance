@@ -1,4 +1,12 @@
-import { extendType, nonNull, objectType, stringArg, enumType } from "nexus";
+import {
+  extendType,
+  inputObjectType,
+  nonNull,
+  objectType,
+  stringArg,
+  enumType,
+  booleanArg,
+} from "nexus";
 import prisma from "../../db/prisma";
 
 const AccountStatuses = objectType({
@@ -15,23 +23,50 @@ const AccountStatuses = objectType({
   },
 });
 
+export const AccountStatusInputType = inputObjectType({
+  name: "AccountStatusInputType",
+  definition(t) {
+    t.nonNull.string("userId");
+    t.nullable.boolean("onboarding");
+    t.nullable.boolean("income");
+    t.nullable.boolean("necessities");
+    t.nullable.boolean("savings");
+    t.nullable.boolean("investments");
+  },
+});
+
 const mutations = extendType({
   type: "Mutation",
   definition: (t) => {
-    t.nullable.field("updateAccountStatuses", {
+    t.nullable.field("createAccountStatuses", {
       type: "AccountStatuses",
       args: {
         userId: nonNull(stringArg()),
       },
-      resolve: async (_, args, ctx) => {
-        if (!ctx.user?.id || args.userId !== ctx.user.id) return null;
-
-        return await prisma.accountStatuses.update({
-          where: { id: args.userId },
-          data: { onboarding: true },
+      resolve: async (_, { userId }, ctx) => {
+        if (!ctx.user?.id || userId !== ctx.user.id) return null;
+        return await prisma.accountStatuses.create({
+          data: {
+            userId,
+          },
         });
       },
-    });
+    }),
+      t.nullable.field("updateAccountStatuses", {
+        type: "AccountStatuses",
+        args: {
+          input: AccountStatusInputType,
+        },
+        resolve: async (_, { input }, ctx) => {
+          // if (!ctx.user?.id || args.userId !== ctx.user.id) return null;
+
+          return await prisma.accountStatuses.update({
+            where: { userId: input!.userId },
+            // @ts-ignore
+            data: input,
+          });
+        },
+      });
   },
 });
 

@@ -1,0 +1,10 @@
+mutation UpdateAccountStatuses($input: AccountStatusInputType) {
+  updateAccountStatuses(input: $input) {
+    id
+    onboarding
+    income
+    necessities
+    savings
+    investments
+  }
+}

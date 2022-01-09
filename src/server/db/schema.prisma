@@ -56,9 +56,10 @@ model Income {
   createdAt  DateTime @default(now())
   modifiedAt DateTime @default(now())
 
-  name   String
-  amount Decimal    @db.Money
-  type   IncomeType
+  name         String
+  payFrequency PayFrequency
+  payAmount    Decimal      @db.Money
+  incomeType   IncomeType
 }
 
 enum Role {
@@ -71,4 +72,10 @@ enum IncomeType {
   SECONDARY
   SIDE_HUSTLE
   SPOUSE
+}
+
+enum PayFrequency {
+  WEEKLY
+  BI_WEEKLY
+  MONTHLY
 }

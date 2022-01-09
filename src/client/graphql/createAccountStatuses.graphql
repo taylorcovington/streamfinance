@@ -1,0 +1,10 @@
+mutation CreateAccountStatuses($userId: String!) {
+  createAccountStatuses(userId: $userId) {
+    id
+    onboarding
+    income
+    necessities
+    savings
+    investments
+  }
+}

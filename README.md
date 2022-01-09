@@ -115,3 +115,7 @@ For more information, check out [the in-depth docs](./docs/README.md)
 #### Server
 
 - The apollo server can be found under `./src/pages/api/index`
+
+## TODO's
+
+1. Need to use income form to create income
