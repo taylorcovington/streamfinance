@@ -2369,10 +2369,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@stripe/stripe-js@^1.21.1":
-  version "1.21.1"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.21.1.tgz#e56cd01f889dc06af4a68ebf61d2492a87e80da1"
-  integrity sha512-/HhRol0Bia/6L7JstXUOpg3m0U3nBW8c2tvaBE6QdonN+OMusYT9AIqCMR/PyzoF3ROifFJ2kbWT7xQjbKN3tw==
+"@stripe/stripe-js@^1.33.0":
+  version "1.33.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.33.0.tgz#fde320bff124daa0249f989352941ed95dc732bf"
+  integrity sha512-qbwAb1Vbg6LMb5Y+0VXM88zpa+qaqtQ6Em6+prkatz+Jvw/qs5/UjhPhgmvBlM0dAgqjLW8I975QOhTTZZqdUw==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
