@@ -46,7 +46,7 @@
     "react-hot-toast": "^2.1.1",
     "slug": "^5.1.0",
     "stripe": "^8.186.1",
-    "urql": "^2.0.5"
+    "urql": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
